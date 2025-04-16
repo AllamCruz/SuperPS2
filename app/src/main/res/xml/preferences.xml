@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Define as configurações do emulador "SuperPS2" organizadas em seções:
+    Gráficos, Áudio, Controles, Desempenho e Opções Avançadas.
+    Os arrays referenciados (ex.: @array/graphics_resolution_entries) devem ser definidos em res/values/arrays.xml.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Seção de Gráficos -->
+    <PreferenceCategory android:title="Gráficos">
+        <ListPreference
+            android:key="graphics_resolution"
+            android:title="Resolução"
+            android:defaultValue="1080p"
+            android:entries="@array/graphics_resolution_entries"
+            android:entryValues="@array/graphics_resolution_values" />
+        <ListPreference
+            android:key="graphics_filters"
+            android:title="Filtros Gráficos"
+            android:defaultValue="none"
+            android:entries="@array/graphics_filter_entries"
+            android:entryValues="@array/graphics_filter_values" />
+        <SwitchPreferenceCompat
+            android:key="graphics_antialiasing"
+            android:title="Anti-Aliasing"
+            android:defaultValue="true" />
+        <ListPreference
+            android:key="graphics_render_mode"
+            android:title="Modo de Renderização"
+            android:defaultValue="hardware"
+            android:entries="@array/graphics_render_mode_entries"
+            android:entryValues="@array/graphics_render_mode_values" />
+    </PreferenceCategory>
+
+    <!-- Seção de Áudio -->
+    <PreferenceCategory android:title="Áudio">
+        <SwitchPreferenceCompat
+            android:key="audio_sync"
+            android:title="Sincronização de Áudio"
+            android:defaultValue="true" />
+        <ListPreference
+            android:key="audio_quality"
+            android:title="Qualidade do Som"
+            android:defaultValue="high"
+            android:entries="@array/audio_quality_entries"
+            android:entryValues="@array/audio_quality_values" />
+        <ListPreference
+            android:key="audio_mode"
+            android:title="Modo de Som"
+            android:defaultValue="stereo"
+            android:entries="@array/audio_mode_entries"
+            android:entryValues="@array/audio_mode_values" />
+    </PreferenceCategory>
+
+    <!-- Seção de Controles -->
+    <PreferenceCategory android:title="Controles">
+        <Preference
+            android:key="controls_mapping"
+            android:title="Mapeamento de Botões"
+            android:summary="Configurar o mapeamento do teclado/gamepad" />
+        <SeekBarPreference
+            android:key="controls_sensitivity"
+            android:title="Sensibilidade de Entrada"
+            android:defaultValue="50"
+            android:min="0"
+            android:max="100" />
+    </PreferenceCategory>
+
+    <!-- Seção de Desempenho -->
+    <PreferenceCategory android:title="Desempenho">
+        <SwitchPreferenceCompat
+            android:key="performance_overclock"
+            android:title="Overclock"
+            android:defaultValue="false" />
+        <SwitchPreferenceCompat
+            android:key="performance_multithreading"
+            android:title="Uso de Multi-threading"
+            android:defaultValue="true" />
+        <Preference
+            android:key="performance_sn_optimizations"
+            android:title="Otimizações para Snapdragon"
+            android:summary="Configurar uso de NEON e outras otimizações nativas" />
+    </PreferenceCategory>
+
+    <!-- Seção de Opções Avançadas -->
+    <PreferenceCategory android:title="Opções Avançadas">
+        <Preference
+            android:key="advanced_logs"
+            android:title="Logs de Depuração"
+            android:summary="Selecione o nível de detalhe para logs e depuração" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

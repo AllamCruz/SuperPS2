@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_iso_game"
+    android:id="@+id/btnStartGame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/ps2CardBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Ícone/capa do jogo -->
+        <ImageView
+            android:id="@+id/image_cover"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_game_placeholder"
+            android:contentDescription="@string/game_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Nome do jogo -->
+        <TextView
+            android:id="@+id/text_game_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nome do Jogo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/ps2TextPrimary"
+            app:layout_constraintStart_toEndOf="@id/image_cover"
+            app:layout_constraintTop_toTopOf="@id/image_cover"
+            app:layout_constraintEnd_toStartOf="@id/btn_play"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="12dp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <!-- Tamanho do jogo -->
+        <TextView
+            android:id="@+id/text_game_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.45 GB"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/ps2TextSecondary"
+            app:layout_constraintStart_toStartOf="@id/text_game_name"
+            app:layout_constraintTop_toBottomOf="@id/text_game_name"/>
+
+        <!-- Botão de iniciar jogo -->
+        <ImageButton
+            android:id="@+id/btn_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/start_game"
+            android:src="@drawable/ic_play_arrow"
+            app:tint="@color/ps2Accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

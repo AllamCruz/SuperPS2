@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Menu para o Navigation Drawer do aplicativo "SuperPS2".
+    Este menu contém as opções: Página Principal, Configurações e Idioma.
+    Cada item utiliza string resources para os títulos e drawables para os ícones,
+    facilitando a internacionalização e mantendo a consistência visual com o tema retro.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Grupo de itens com seleção única -->
+    <group android:checkableBehavior="single">
+        <!-- Item para Página Principal -->
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_home"
+            android:icon="@drawable/ic_home" />
+
+        <!-- Item para Configurações -->
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/menu_settings"
+            android:icon="@drawable/ic_settings" />
+
+        <!-- Item para Troca de Idioma -->
+        <item
+            android:id="@+id/nav_change_language"
+            android:title="@string/menu_language"
+            android:icon="@drawable/ic_language" />
+    </group>
+
+</menu>

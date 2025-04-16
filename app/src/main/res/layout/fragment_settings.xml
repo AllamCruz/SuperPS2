@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ps2_dark_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:showDividers="middle">
+
+        <!-- Gráficos -->
+        <TextView
+            style="@style/SettingsSectionTitle"
+            android:text="@string/settings_graphics_title" />
+
+        <Spinner
+            android:id="@+id/spinner_resolution"
+            style="@style/SettingsSpinner" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_anisotropic"
+            android:text="@string/settings_graphics_anisotropic"
+            style="@style/SettingsSwitch" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_upscaling"
+            android:text="@string/settings_graphics_upscaling"
+            style="@style/SettingsSwitch" />
+
+        <!-- Áudio -->
+        <TextView
+            style="@style/SettingsSectionTitle"
+            android:text="@string/settings_audio_title" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_audio"
+            android:text="@string/settings_audio_enable"
+            style="@style/SettingsSwitch" />
+
+        <Spinner
+            android:id="@+id/spinner_audio_quality"
+            style="@style/SettingsSpinner" />
+
+        <!-- Controles -->
+        <TextView
+            style="@style/SettingsSectionTitle"
+            android:text="@string/settings_controls_title" />
+
+        <Spinner
+            android:id="@+id/spinner_control_layout"
+            style="@style/SettingsSpinner" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_vibration"
+            android:text="@string/settings_controls_vibration"
+            style="@style/SettingsSwitch" />
+
+        <!-- Desempenho -->
+        <TextView
+            style="@style/SettingsSectionTitle"
+            android:text="@string/settings_performance_title" />
+
+        <TextView
+            android:id="@+id/txt_fps_value"
+            android:text="60 FPS"
+            style="@style/FpsText" />
+
+        <SeekBar
+            android:id="@+id/seekbar_fps"
+            android:max="120"
+            android:progress="60"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_snapdragon"
+            android:text="@string/settings_performance_snapdragon"
+            style="@style/SettingsSwitch" />
+
+        <!-- Avançado -->
+        <TextView
+            style="@style/SettingsSectionTitle"
+            android:text="@string/settings_advanced_title" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_show_logs"
+            android:text="@string/settings_advanced_logs"
+            style="@style/SettingsSwitch" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_compat_mode"
+            android:text="@string/settings_advanced_compat"
+            style="@style/SettingsSwitch" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,19 @@
+<resources>
+    <string-array name="resolution_options">
+        <item>Padrão</item>
+        <item>2x</item>
+        <item>3x</item>
+        <item>4x</item>
+    </string-array>
+
+    <string-array name="renderer_options">
+        <item>OpenGL</item>
+        <item>Vulkan</item>
+    </string-array>
+
+    <string-array name="audio_sync_options">
+        <item>Automático</item>
+        <item>Sincronizar com vídeo</item>
+        <item>Desativado</item>
+    </string-array>
+</resources>

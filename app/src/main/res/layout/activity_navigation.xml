@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout principal que integra o Navigation Drawer para o aplicativo "SuperPS2".
+    A raiz do layout é um DrawerLayout, que abrange:
+      - Um FrameLayout (com id: nav_host_fragment_container) para hospedar os fragments da interface.
+      - Um NavigationView (com id: nav_view) que exibe o menu lateral com cabeçalho personalizado e itens definidos em drawer_menu.xml.
+      
+    Este layout está preparado para trabalhar com o NavController futuramente.
+-->
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Container principal para exibir os Fragments -->
+    <FrameLayout
+        android:id="@+id/nav_host_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- NavigationView com menu lateral e cabeçalho personalizado -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+        
+</androidx.drawerlayout.widget.DrawerLayout>

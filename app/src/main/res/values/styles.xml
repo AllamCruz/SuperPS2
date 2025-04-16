@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema principal do aplicativo "SuperPS2".
+         Baseado em Theme.AppCompat.Light.NoActionBar, adaptado para transmitir o visual retro.
+         Todos os componentes da UI referenciam essas definições para manter uma aparência consistente. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Cor de fundo geral do aplicativo -->
+        <item name="android:windowBackground">@color/black_blue_background</item>
+        <!-- Cor de acento utilizada em componentes interativos -->
+        <item name="colorAccent">@color/accent_color</item>
+        <!-- Define o estilo padrão de botões com efeito ripple -->
+        <item name="android:buttonStyle">@style/RetroButton</item>
+        <!-- Estilo para o cabeçalho do Navigation Drawer -->
+        <item name="headerTextStyle">@style/RetroHeaderText</item>
+    </style>
+
+    <!-- Estilo para botões com aparência retro e efeito de toque ripple.
+         Utiliza o atributo ?attr/selectableItemBackground para aplicar feedback visual elegante. -->
+    <style name="RetroButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:padding">12dp</item>
+        <!-- Futuras personalizações de fontes e animações podem ser adicionadas aqui -->
+    </style>
+
+    <!-- Estilo para o TextView do cabeçalho do Navigation Drawer, com tipografia retro. -->
+    <style name="RetroHeaderText">
+        <!-- Utiliza uma fonte cursiva para reforçar o estilo retrô -->
+        <item name="android:fontFamily">cursive</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <!-- Estilo para o rodapé do layout principal, com tipografia cursiva e opacidade reduzida. -->
+    <style name="FooterText">
+        <item name="android:fontFamily">cursive</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:alpha">0.5</item>
+    </style>
+
+    <!-- 
+      FUTURAS EXPANSÕES:
+      Arquivos de animação podem ser definidos na pasta res/anim (ex.: fade_in.xml para transições suaves).
+      Arquivos de fonte adicionais podem ser incluídos em res/font para reforçar a tipografia retro.
+    -->
+</resources>

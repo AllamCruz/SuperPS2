@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Strings da tela principal -->
+    <!-- Título da Aplicação -->
+    <string name="title_main_screen">SuperPS2 Emulator</string>
+    <!-- Botão flutuante para adicionar ISO -->
+    <string name="fab_add_game">Adicionar jogo</string>
+    <!-- Texto para a seleção de pasta dos ISOs -->
+    <string name="select_folder_text">Selecione uma pasta com ISOs</string>
+    <!-- Texto de compatibilidade do dispositivo com placeholder para valor dinâmico -->
+    <string name="device_compatibility">Compatibilidade do dispositivo: %1$s</string>
+    <!-- Exemplo de placeholder que pode incluir Chipset, Memória RAM e Nome do Dispositivo -->
+    <string name="device_info_details">%1$s | %2$s | %3$s</string>
+
+    <!-- Strings do Navigation Drawer -->
+    <!-- Item para Página Principal -->
+    <string name="menu_home">Página Principal</string>
+    <!-- Item para Configurações -->
+    <string name="menu_settings">Configurações</string>
+    <!-- Item para Troca de Idioma -->
+    <string name="menu_language">Idioma</string>
+
+    <!-- Strings da tela de Configurações -->
+    <!-- Título da página de configurações -->
+    <string name="settings_title">Configurações</string>
+    <!-- Seção de Gráficos -->
+    <string name="settings_graphics">Gráficos</string>
+    <!-- Seção de Áudio -->
+    <string name="settings_audio">Áudio</string>
+    <!-- Seção de Controles -->
+    <string name="settings_controls">Controles</string>
+    <!-- Seção de Desempenho -->
+    <string name="settings_performance">Desempenho</string>
+    <!-- Seção Avançada -->
+    <string name="settings_advanced">Avançado</string>
+    <!-- Texto para opção de switch: Ativar otimizações Snapdragon -->
+    <string name="toggle_snapdragon_optimizations">Ativar otimizações Snapdragon</string>
+    <!-- Texto para opção de slider: Limitar FPS -->
+    <string name="slider_limit_fps">Limitar FPS</string>
+
+    <!-- Strings do Rodapé / Sobre o Aplicativo -->
+    <!-- Nome e versão do aplicativo -->
+    <string name="app_footer_info">SuperPS2 v1.0</string>
+    <!-- Frase de assinatura -->
+    <string name="app_signature">Emulador inspirado no lendário PS2</string>
+
+    <string name="game_cover">Capa do Jogo</string>
+    <string name="settings_graphics_title">Gráficos</string>
+    <string name="settings_audio_title">Áudio</string>
+    <string name="settings_performance_title">Desempenho</string>
+    <string name="settings_graphics_aa">Anti-Aliasing</string>
+    <string name="settings_audio_enable">Ativar Áudio</string>
+    <string name="settings_performance_cpu_speed">Velocidade da CPU</string>
+    <string name="settings_performance_frame_skip">Pular Quadros (Frame Skip)</string>
+    <string name="save_settings">Salvar Configurações</string>
+    <string name="reset_to_default">Restaurar Padrões</string>
+    <string name="settings_saved">Configurações salvas!</string>
+    <string name="settings_reset">Configurações restauradas.</string>
+    <string name="starting_game">Iniciando jogo…</string>
+    <string name="emulation_failed">Falha ao iniciar jogo.</string>
+    <string name="invalid_iso_path">Caminho da ISO inválido.</string>
+
+
+
+</resources>

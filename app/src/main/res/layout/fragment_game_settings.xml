@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ps2_dark_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Capa do jogo -->
+        <ImageView
+            android:id="@+id/imageCover"
+            android:layout_width="120dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_game_placeholder"
+            android:contentDescription="@string/game_cover" />
+
+        <!-- GRÁFICOS -->
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/settings_graphics_title" />
+
+        <Spinner
+            android:id="@+id/spinnerResolution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/resolution_options" />
+
+        <Switch
+            android:id="@+id/switchAA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_graphics_aa" />
+
+        <Spinner
+            android:id="@+id/spinnerRenderer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/renderer_options" />
+
+        <View style="@style/DividerLine" />
+
+        <!-- ÁUDIO -->
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/settings_audio_title" />
+
+        <Switch
+            android:id="@+id/switchAudio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_audio_enable" />
+
+        <Spinner
+            android:id="@+id/spinnerSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/audio_sync_options" />
+
+        <View style="@style/DividerLine" />
+
+        <!-- DESEMPENHO -->
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/settings_performance_title" />
+
+        <TextView
+            android:text="@string/settings_performance_cpu_speed" />
+        <SeekBar
+            android:id="@+id/seekbarCpuSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="300"
+            android:progress="100" />
+
+        <Switch
+            android:id="@+id/switchFrameSkip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_performance_frame_skip" />
+
+        <View style="@style/DividerLine" />
+
+        <!-- Botões -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_settings"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reset_to_default"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>

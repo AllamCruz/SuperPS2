@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Cabeçalho para o Navigation Drawer do aplicativo "SuperPS2".
+    Este layout utiliza um LinearLayout com orientação vertical, altura fixa de 160dp e fundo com a cor customizada @color/black_blue_header.
+    Comentários indicam onde aplicar futuras alterações, como animações, gradientes ou efeitos de sombra.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:orientation="vertical"
+    android:background="@color/black_blue_header"
+    android:padding="16dp">
+
+    <!-- Título do cabeçalho com estilo retrô -->
+    <!-- Este TextView exibe o nome do aplicativo "SuperPS2" em fonte negrito, remetendo ao design retro -->
+    <TextView
+        android:id="@+id/tvHeaderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SuperPS2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white" />
+
+     <TextView
+        android:id="@+id/tvHeaderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_main_screen"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text" />
+
+     <TextView
+        android:id="@+id/tvAppVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_footer_info"
+        android:textSize="14sp"
+        android:fontFamily="cursive"
+        android:alpha="0.5"
+        android:textColor="@color/primary_text"
+        android:layout_marginTop="4dp" />
+
+    <!-- Elemento gráfico opcional para referência visual ao PS2 -->
+    <!-- O ImageView abaixo pode ser utilizado para exibir a logo ou ícone estilizado do console PS2 -->
+    <ImageView
+        android:id="@+id/ivPs2Logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ps2_logo"  
+        android:contentDescription="@string/ps2_logo"  
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
+
+    <Button
+    android:id="@+id/btnStartGame"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/start_game"
+    android:layout_gravity="end"
+    android:backgroundTint="@color/ps2_blue"
+    android:textColor="@android:color/white"
+    android:drawableStart="@drawable/ic_play" />
+
+
+    <!--
+        FUTURA EXPANSÃO:
+        Aqui podem ser adicionados outros elementos visuais ou efeitos,
+        como gradientes e sombras (definidos via styles.xml ou arquivos de animação),
+        para reforçar ainda mais a identidade visual retrô e a temática PS2.
+    -->
+</LinearLayout>

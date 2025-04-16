@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cor de fundo predominante: mistura de preto e azul, reforçando o visual retro -->
+    <color name="black_blue_background">#001F3F</color>
+    
+    <!-- Cor de fundo utilizada no cabeçalho do Navigation Drawer -->
+    <color name="black_blue_header">#0A2342</color>
+    
+    <!-- Cor de acento para botões, ícones e elementos interativos (ex.: Floating Action Button) -->
+    <color name="accent_color">#FF4136</color>
+    
+    <!-- Cor utilizada para textos principais, garantindo alto contraste -->
+    <color name="primary_text">#FFFFFF</color>
+    
+    <!-- Cor para textos secundários ou informações menos importantes -->
+    <color name="secondary_text">#AAAAAA</color>
+    
+    <!-- Cor para bordas, separadores ou destaques sutis -->
+    <color name="border_color">#333333</color>
+    
+    <!-- Cor para efeito ripple ao tocar nos componentes interativos -->
+    <color name="ripple_color">#555555</color>
+</resources>
