@@ -1,3 +1,7 @@
+#include <stdint.h>
+#include <stddef.h>
+#include <cstring>
+#include <cwchar>
 #include "spu2.h"
 #include <aaudio/AAudio.h>
 #include <android/log.h>

@@ -36,7 +36,7 @@
             android:text="Nome do Dispositivo | Chipset | Memória RAM | % Compatibilidade"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:background="?attr/selectableItemBackground" <!-- Referência ao efeito ripple -->
+            android:background="?attr/selectableItemBackground"
             android:gravity="center_vertical" />
 
         <!-- Espaço reservado para futura área de emulação/renderização -->
@@ -63,7 +63,7 @@
             android:text="SuperPS2 v1.0"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:alpha="0.5"  <!-- Opacidade reduzida -->
+            android:alpha="0.5"
             android:fontFamily="cursive" />
 
         <!-- Botão de ação flutuante (FAB) para adicionar arquivos ISO -->
@@ -74,8 +74,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
-            app:srcCompat="@drawable/ic_add"  <!-- Ícone de adição -->
-            app:rippleColor="@color/accent_color"  <!-- Efeito ripple customizado -->
+            app:srcCompat="@drawable/ic_add"
+            app:rippleColor="@color/accent_color"
             app:backgroundTint="@color/accent_color"
             android:contentDescription="@string/add_iso" />
 
@@ -111,9 +111,9 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <!-- Navigation Drawer: Menu lateral -->
+    <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navView"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

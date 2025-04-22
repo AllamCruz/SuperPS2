@@ -40,6 +40,12 @@
         <item name="android:alpha">0.5</item>
     </style>
 
+    <style name="headerTextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <!-- 
       FUTURAS EXPANSÕES:
       Arquivos de animação podem ser definidos na pasta res/anim (ex.: fade_in.xml para transições suaves).

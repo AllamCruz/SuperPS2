@@ -3,6 +3,10 @@
 // Este arquivo contém a implementação inicial do núcleo do emulador "SuperPS2"
 // e serve como interface entre o código Kotlin/Android e a camada nativa via JNI.
 
+#include <stdint.h>
+#include <stddef.h>
+#include <cstring>
+#include <cwchar>
 #include <jni.h>
 #include <string>
 #include <exception>
@@ -12,6 +16,9 @@
 #include "emulation/input/input_manager.h"
 #include <android/log.h>
 #include "core/ps2_core.h"
+#include <android/native_window.h>
+#include <android/native_window_jni.h>
+#include "graphics/ps2renderer.h"
 
 // Define macros para logging no Android
 #define LOG_TAG "SuperPS2-CPP"
@@ -268,35 +275,22 @@ Java_com_superps2_emu_jni_NativeInput_onAxisEvent(JNIEnv*, jobject, jint axis, j
 #include "graphics/gl_renderer.h"
 #include "emulation/gs/renderer/vertex_buffer.h"
 
-extern "C"
-JNIEXPORT void JNICALL
+// Funções de renderização
+extern "C" JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeInit(JNIEnv* env, jobject thiz) {
-    LOGI("Initializing native GL renderer...");
-    if (!graphics::glRenderer.init()) {
-        LOGI("Failed to initialize OpenGL renderer");
-    } else {
-        LOGI("OpenGL renderer initialized successfully.");
-    }
+    LOGI("Inicializando renderizador OpenGL...");
 }
 
-extern "C"
-JNIEXPORT void JNICALL
+extern "C" JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeRender(JNIEnv* env, jobject thiz) {
-    renderer::VertexBuffer buffer;
-    
-    // Teste temporário: triângulo de exemplo
-    buffer.addVertex({{0.0f,  0.5f, 0.0f}, {255, 0, 0, 255}});
-    buffer.addVertex({{-0.5f, -0.5f, 0.0f}, {0, 255, 0, 255}});
-    buffer.addVertex({{0.5f, -0.5f, 0.0f}, {0, 0, 255, 255}});
-
-    graphics::glRenderer.render(buffer);
+    // Renderização do frame atual
+    ps2renderer::renderFrame();
 }
 
-extern "C"
-JNIEXPORT void JNICALL
+extern "C" JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeShutdown(JNIEnv* env, jobject thiz) {
-    LOGI("Shutting down GL renderer...");
-    graphics::glRenderer.shutdown();
+    LOGI("Finalizando renderizador OpenGL...");
+    ps2renderer::shutdown();
 }
 
 extern "C" {

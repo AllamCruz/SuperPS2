@@ -6,6 +6,7 @@
     <string name="title_main_screen">SuperPS2 Emulator</string>
     <!-- Botão flutuante para adicionar ISO -->
     <string name="fab_add_game">Adicionar jogo</string>
+    <string name="add_iso">Adicionar arquivo ISO</string>
     <!-- Texto para a seleção de pasta dos ISOs -->
     <string name="select_folder_text">Selecione uma pasta com ISOs</string>
     <!-- Texto de compatibilidade do dispositivo com placeholder para valor dinâmico -->
@@ -64,5 +65,16 @@
     <string name="state_loaded">Estado do jogo carregado com sucesso</string>
     <string name="error_saving_state">Erro ao salvar estado do jogo</string>
     <string name="error_loading_state">Erro ao carregar estado do jogo</string>
+
+    <string name="app_name">SuperPS2</string>
+    <string name="games">Jogos</string>
+    <string name="settings">Configurações</string>
+    <string name="about">Sobre</string>
+    <string name="no_games_found">Nenhum jogo encontrado</string>
+    <string name="scan_games">Buscar Jogos</string>
+    <string name="emulation_settings">Configurações de Emulação</string>
+    <string name="graphics_settings">Configurações Gráficas</string>
+    <string name="audio_settings">Configurações de Áudio</string>
+    <string name="controls">Controles</string>
 
 </resources>

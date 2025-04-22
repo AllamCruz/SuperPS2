@@ -1,51 +1,84 @@
 # Versão mínima do CMake requerida para o projeto. 
-# Utilizamos a versão 3.10 para garantir compatibilidade com recursos modernos.
-cmake_minimum_required(VERSION 3.10)
+# Utilizamos a versão 3.22.1 para garantir compatibilidade com recursos modernos.
+cmake_minimum_required(VERSION 3.22.1)
 
 # Define o nome do projeto
-project(SuperPS2)
+project(superps2)
 
-# Configuração do padrão C++: definições para utilizar C++17.
+# Configurações do Android
+set(ANDROID_NDK ${ANDROID_NDK})
+set(ANDROID_ABI ${ANDROID_ABI})
+set(ANDROID_PLATFORM android-24)
+
+# Definições necessárias
+add_definitions(-D__STDC_LIMIT_MACROS)
+add_definitions(-D__STDC_CONSTANT_MACROS)
+add_definitions(-DJNIEXPORT=__attribute__\(\(visibility\(\"default\"\)\)\))
+
+# Configurar C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Flags de compilação: -O2 para otimização de desempenho.
-# Estes flags podem ser ajustados para níveis superiores conforme necessário.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
-
-# Diretório onde se encontram os arquivos fonte nativos.
-# Neste exemplo, o arquivo native-lib.cpp está localizado em "app/src/main/cpp/"
-set(SRC_DIR "${CMAKE_SOURCE_DIR}/app/src/main/cpp")
-
-# Adiciona os arquivos do core
-file(GLOB_RECURSE CORE_SRC
-    "src/main/cpp/core/*.cpp"
+# Incluir diretórios
+include_directories(
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/include
+    ${ANDROID_NDK}/sources/android/native_app_glue
+    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
+    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
+    ${ANDROID_NDK}/sysroot/usr/include
+    ${CMAKE_SOURCE_DIR}/audio
+    ${CMAKE_SOURCE_DIR}/core
+    ${CMAKE_SOURCE_DIR}/emulation
+    ${CMAKE_SOURCE_DIR}/graphics
+    ${CMAKE_SOURCE_DIR}/ps2engine
+    ${CMAKE_SOURCE_DIR}/utils
 )
 
-# Criação de uma biblioteca compartilhada (shared library) que será utilizada pelo aplicativo Android.
-# A biblioteca é denominada "native-lib".
-add_library(
-    native-lib                 # Nome da biblioteca
-    SHARED                     # Tipo: biblioteca compartilhada
-    ${SRC_DIR}/native-lib.cpp  # Arquivo fonte da biblioteca
-    ${CORE_SRC}
+# Coletar arquivos fonte
+file(GLOB SOURCES 
+    "*.cpp"
+    "audio/*.cpp"
+    "core/*.cpp"
+    "emulation/*.cpp"
+    "graphics/*.cpp"
+    "ps2engine/*.cpp"
+    "utils/*.cpp"
 )
 
-# Localiza a biblioteca "log" do Android, necessária para o sistema de logging.
-# A função find_library garante que a biblioteca seja corretamente linkada no build.
-find_library(
-    log-lib     # Nome da variável que armazenará o caminho da biblioteca
-    log         # Nome da biblioteca (log do Android)
+# Criar biblioteca compartilhada
+add_library(superps2 SHARED ${SOURCES})
+
+# Localiza as bibliotecas necessárias
+find_library(log-lib log)
+find_library(android-lib android)
+find_library(egl-lib EGL)
+find_library(glesv2-lib GLESv2)
+find_library(oboe-lib oboe)
+
+# Adiciona zlib para cálculo de CRC32
+find_package(ZLIB REQUIRED)
+
+# Vincular bibliotecas
+target_link_libraries(superps2
+    ${log-lib}
+    ${android-lib}
+    ${egl-lib}
+    ${glesv2-lib}
+    ${oboe-lib}
+    ZLIB::ZLIB
 )
 
-# Linka a biblioteca nativa com as bibliotecas do sistema (neste caso, a biblioteca "log").
-# Outras bibliotecas podem ser adicionadas a esta seção conforme o projeto evolua.
-target_link_libraries(
-    native-lib  # Biblioteca a ser linkada
-    ${log-lib}  # Bibliotecas externas a serem utilizadas (Android log)
+# Opções de compilação
+target_compile_options(superps2 PRIVATE
+    -Wall
+    -Wextra
+    -fexceptions
+    -frtti
+    -fPIC
 )
 
-# Inclui o novo módulo ps2engine
+# Inclui os arquivos fonte do projeto
 target_sources(superps2 PRIVATE
     src/main/cpp/ps2engine/ps2engine.cpp
     src/main/cpp/emulation/ps2core.cpp
@@ -84,33 +117,10 @@ target_sources(superps2 PRIVATE
     src/main/cpp/jni/emulator_bridge.cpp
     src/main/cpp/emulation/input/input_manager.cpp
     src/main/cpp/graphics/gl_renderer.cpp
-)
-include_directories(src/main/cpp/ps2engine)
-include_directories(src/main/cpp/emulation/bios)
-
-# Integração do subsistema de áudio SPU2
-target_sources(superps2 PRIVATE
     src/main/cpp/audio/spu2.cpp
     src/main/cpp/jni/native-audio-bridge.cpp
 )
 
-# Adiciona zlib para cálculo de CRC32
-find_package(ZLIB REQUIRED)
-target_link_libraries(superps2 PRIVATE ${log-lib} ${aaudio-lib} ZLIB::ZLIB)
-
-target_link_libraries(superps2 PRIVATE
-    android
-    log
-    EGL
-    GLESv2
-)
-
-# Find and link against Oboe
-find_library(oboe-lib oboe)
-target_link_libraries(superps2 PRIVATE
-    android
-    log
-    EGL
-    GLESv2
-    ${oboe-lib}
-)
+# Incluir diretórios adicionais
+include_directories(src/main/cpp/ps2engine)
+include_directories(src/main/cpp/emulation/bios)

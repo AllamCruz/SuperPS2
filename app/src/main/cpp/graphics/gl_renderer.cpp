@@ -1,3 +1,7 @@
+#include <stdint.h>
+#include <stddef.h>
+#include <cstring>
+#include <cwchar>
 #include "gl_renderer.h"
 #include <android/log.h>
 #include <vector>

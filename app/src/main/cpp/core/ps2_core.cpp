@@ -1,3 +1,7 @@
+#include <stdint.h>
+#include <stddef.h>
+#include <cstring>
+#include <cwchar>
 #include "ps2_core.h"
 #include <android/log.h>
 #include <thread>

@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Cor de fundo predominante: mistura de preto e azul, reforçando o visual retro -->
-    <color name="black_blue_background">#001F3F</color>
+    <!-- Cores principais -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF4081</color>
     
-    <!-- Cor de fundo utilizada no cabeçalho do Navigation Drawer -->
-    <color name="black_blue_header">#0A2342</color>
+    <!-- Cores do Material Design -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
     
-    <!-- Cor de acento para botões, ícones e elementos interativos (ex.: Floating Action Button) -->
-    <color name="accent_color">#FF4136</color>
+    <!-- Cores neutras -->
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B00020</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
     
-    <!-- Cor utilizada para textos principais, garantindo alto contraste -->
-    <color name="primary_text">#FFFFFF</color>
+    <!-- Texto -->
+    <color name="text_primary">#DE000000</color>
+    <color name="text_secondary">#99000000</color>
+    <color name="text_disabled">#61000000</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="primary_text">@color/text_primary</color>
     
-    <!-- Cor para textos secundários ou informações menos importantes -->
-    <color name="secondary_text">#AAAAAA</color>
+    <!-- Estados -->
+    <color name="ripple">#33000000</color>
+    <color name="divider">#1F000000</color>
+    <color name="scrim">#52000000</color>
     
-    <!-- Cor para bordas, separadores ou destaques sutis -->
-    <color name="border_color">#333333</color>
+    <!-- Cores do sistema -->
+    <color name="status_bar">#1976D2</color>
+    <color name="navigation_bar">#000000</color>
     
-    <!-- Cor para efeito ripple ao tocar nos componentes interativos -->
-    <color name="ripple_color">#555555</color>
+    <!-- Cores legadas -->
+    <color name="black_blue_background">#121212</color>
+    <color name="accent_color">@color/accent</color>
 </resources>
