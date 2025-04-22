@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_states"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_state"
+        android:layout_marginBottom="8dp"
+        app:backgroundTint="@color/primary"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoadState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/load_state"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/primary"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/controls"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchTouchControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enable_touch_controls"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchVibration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/enable_vibration"
+        android:textColor="@color/white"/>
+
+</LinearLayout> 

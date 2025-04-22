@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stateContainer"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Botão para criar novo Save State -->
+    <Button
+        android:id="@+id/btnSaveState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save_state"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Lista de arquivos .sps2 já existentes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStates"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Botão para carregar o State selecionado -->
+    <Button
+        android:id="@+id/btnLoadState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_load_state"
+        android:layout_marginTop="12dp"/>
+</LinearLayout> 

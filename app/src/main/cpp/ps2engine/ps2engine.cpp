@@ -1,6 +1,7 @@
 #include "ps2engine.h"
 #include "emulation/ps2core.h"
 #include <android/log.h>
+#include "gif/gif.h"
 #include <fstream>
 
 #define LOG_TAG "SuperPS2Engine"
@@ -14,7 +15,19 @@ namespace ps2engine {
         std::ifstream file(path);
         return file.good();
     }
-
+    bool ps2core::init() {
+        if (!ps2renderer::init()) return false;
+        if (!gif::init()) { // Inicializa após o renderizador
+            LOGE("Falha ao inicializar GIF.");
+            return false;
+        }
+        return true;
+    }
+    
+    void ps2core::shutdown() {
+        gif::shutdown(); // Desliga antes do renderizador
+        ps2renderer::shutdown();
+    }
     // Inicia a engine de emulação (esqueleto)
     bool start(const std::string& isoPath) {
         LOGI("Inicializando motor PS2 com ISO: %s", isoPath.c_str());

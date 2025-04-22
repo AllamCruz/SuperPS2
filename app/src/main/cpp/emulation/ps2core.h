@@ -1,13 +1,16 @@
-#ifndef SUPERPS2_PS2CORE_H
-#define SUPERPS2_PS2CORE_H
+#pragma once
 
 #include <string>
+#include <cstdint>
 
 namespace ps2core {
-    bool init(const std::string& isoPath);
-    void startLoop(); // Roda o ciclo principal da emulação
-    void stop();
-    bool isRunning();
+    bool init();
+    bool loadISO(const std::string& isoPath);
+    void run();
+    void shutdown();
+    
+    // Controla o estado da emulação
+    void pauseEmulation();
+    void resumeEmulation();
+    void stopEmulation();
 }
-
-#endif //SUPERPS2_PS2CORE_H

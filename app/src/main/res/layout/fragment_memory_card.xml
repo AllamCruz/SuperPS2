@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Spinner
+        android:id="@+id/spinnerSlot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnOpenCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Abrir Cartão" />
+
+    <ListView
+        android:id="@+id/listSaves"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnSaveState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar Bloco" />
+
+</LinearLayout> 

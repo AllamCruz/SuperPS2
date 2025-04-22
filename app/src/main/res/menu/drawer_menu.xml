@@ -15,6 +15,12 @@
             android:title="@string/menu_home"
             android:icon="@drawable/ic_home" />
 
+        <!-- Item para Memory Card -->
+        <item
+            android:id="@+id/nav_memory_card"
+            android:icon="@drawable/ic_sd_card"
+            android:title="Memory Card" />
+
         <!-- Item para Configurações -->
         <item
             android:id="@+id/nav_settings"
@@ -26,6 +32,12 @@
             android:id="@+id/nav_change_language"
             android:title="@string/menu_language"
             android:icon="@drawable/ic_language" />
+
+        <!-- Item para Save/Load State -->
+        <item
+            android:id="@+id/nav_states"
+            android:icon="@drawable/ic_save_state"
+            android:title="@string/menu_states" />
     </group>
 
 </menu>

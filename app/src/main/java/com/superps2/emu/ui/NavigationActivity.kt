@@ -129,4 +129,27 @@ class NavigationActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val drawerLayout = binding.drawerLayout
+        when (item.itemId) {
+            R.id.nav_home -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_container, HomeFragment())
+                    .addToBackStack(null)
+                    .commit()
+                drawerLayout.closeDrawers()
+                true
+            }
+            R.id.nav_states -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment_container, StateFragment())
+                    .addToBackStack(null)
+                    .commit()
+                drawerLayout.closeDrawers()
+                true
+            }
+            else -> false
+        }
+    }
 }

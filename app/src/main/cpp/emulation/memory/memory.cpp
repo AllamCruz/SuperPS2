@@ -1,4 +1,5 @@
 #include "memory.h"
+#include "../scratchpad/scratchpad.h"
 #include <cstdlib>
 #include <cstring>
 #include <android/log.h>
@@ -21,6 +22,12 @@ namespace memory {
         }
         memset(mainRAM, 0, RAM_SIZE);
         LOGI("Memória principal de 32MB alocada com sucesso.");
+
+        if (!scratchpad::init()) {
+            LOGE("Falha ao inicializar Scratchpad");
+            return false;
+        }
+
         return true;
     }
 
@@ -30,6 +37,7 @@ namespace memory {
             mainRAM = nullptr;
             LOGI("Memória principal liberada.");
         }
+        scratchpad::shutdown();
     }
 
     bool isValidAddress(uint32_t addr) {
@@ -37,6 +45,9 @@ namespace memory {
     }
 
     uint8_t read8(uint32_t addr) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            return scratchpad::read8(scratchpad::addrToOffset(addr));
+        }
         if (!isValidAddress(addr)) {
             LOGE("Leitura inválida (8 bits) no endereço: 0x%08X", addr);
             return 0;
@@ -45,6 +56,9 @@ namespace memory {
     }
 
     uint16_t read16(uint32_t addr) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            return scratchpad::read16(scratchpad::addrToOffset(addr));
+        }
         if (!isValidAddress(addr + 1)) {
             LOGE("Leitura inválida (16 bits) no endereço: 0x%08X", addr);
             return 0;
@@ -53,6 +67,9 @@ namespace memory {
     }
 
     uint32_t read32(uint32_t addr) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            return scratchpad::read32(scratchpad::addrToOffset(addr));
+        }
         if (!isValidAddress(addr + 3)) {
             LOGE("Leitura inválida (32 bits) no endereço: 0x%08X", addr);
             return 0;
@@ -61,6 +78,10 @@ namespace memory {
     }
 
     void write8(uint32_t addr, uint8_t value) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            scratchpad::write8(scratchpad::addrToOffset(addr), value);
+            return;
+        }
         if (!isValidAddress(addr)) {
             LOGE("Escrita inválida (8 bits) no endereço: 0x%08X", addr);
             return;
@@ -69,6 +90,10 @@ namespace memory {
     }
 
     void write16(uint32_t addr, uint16_t value) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            scratchpad::write16(scratchpad::addrToOffset(addr), value);
+            return;
+        }
         if (!isValidAddress(addr + 1)) {
             LOGE("Escrita inválida (16 bits) no endereço: 0x%08X", addr);
             return;
@@ -77,6 +102,10 @@ namespace memory {
     }
 
     void write32(uint32_t addr, uint32_t value) {
+        if (scratchpad::isScratchpadAddr(addr)) {
+            scratchpad::write32(scratchpad::addrToOffset(addr), value);
+            return;
+        }
         if (!isValidAddress(addr + 3)) {
             LOGE("Escrita inválida (32 bits) no endereço: 0x%08X", addr);
             return;

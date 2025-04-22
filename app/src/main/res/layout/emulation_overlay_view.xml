@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emulationOverlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <!-- D-Pad -->
+    <ImageButton
+        android:id="@+id/btnDpadUp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="160dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_dpad_up" />
+
+    <ImageButton
+        android:id="@+id/btnDpadDown"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="32dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_dpad_down" />
+
+    <ImageButton
+        android:id="@+id/btnDpadLeft"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="96dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_dpad_left" />
+
+    <ImageButton
+        android:id="@+id/btnDpadRight"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="96dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_dpad_right" />
+
+    <!-- Action Buttons -->
+    <ImageButton
+        android:id="@+id/btnCircle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="160dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_circle" />
+
+    <ImageButton
+        android:id="@+id/btnX"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="96dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_x" />
+
+    <ImageButton
+        android:id="@+id/btnTriangle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="160dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_triangle" />
+
+    <ImageButton
+        android:id="@+id/btnSquare"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="160dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_square" />
+
+    <!-- Start & Select -->
+    <ImageButton
+        android:id="@+id/btnStart"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="96dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_start" />
+
+    <ImageButton
+        android:id="@+id/btnSelect"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="160dp"
+        android:alpha="0.6"
+        android:background="@drawable/btn_select" />
+
+</FrameLayout> 

@@ -60,7 +60,9 @@
     <string name="starting_game">Iniciando jogo…</string>
     <string name="emulation_failed">Falha ao iniciar jogo.</string>
     <string name="invalid_iso_path">Caminho da ISO inválido.</string>
-
-
+    <string name="state_saved">Estado do jogo salvo com sucesso</string>
+    <string name="state_loaded">Estado do jogo carregado com sucesso</string>
+    <string name="error_saving_state">Erro ao salvar estado do jogo</string>
+    <string name="error_loading_state">Erro ao carregar estado do jogo</string>
 
 </resources>
