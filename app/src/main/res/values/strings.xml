@@ -77,4 +77,34 @@
     <string name="audio_settings">Configurações de Áudio</string>
     <string name="controls">Controles</string>
 
+    <string name="loading">Carregando...</string>
+    <string name="save_states">Estados Salvos</string>
+    <string name="save_state">Salvar Estado</string>
+    <string name="load_state">Carregar Estado</string>
+    <string name="enable_touch_controls">Habilitar Controles Touch</string>
+    <string name="enable_vibration">Habilitar Vibração</string>
+
+    <!-- Configurações de Gráficos -->
+    <string name="settings_graphics_anisotropic">Filtragem Anisotrópica</string>
+    <string name="settings_graphics_upscaling">Escala de Resolução</string>
+    
+    <!-- Configurações de Controles -->
+    <string name="settings_controls_title">Controles</string>
+    <string name="settings_controls_vibration">Vibração</string>
+    
+    <!-- Configurações de Performance -->
+    <string name="settings_performance_snapdragon">Otimizações Snapdragon</string>
+    
+    <!-- Configurações Avançadas -->
+    <string name="settings_advanced_title">Avançado</string>
+    <string name="settings_advanced_logs">Logs de Depuração</string>
+    <string name="settings_advanced_compat">Modo de Compatibilidade</string>
+    
+    <!-- Estados de Jogo -->
+    <string name="button_save_state">Salvar Estado</string>
+    <string name="button_load_state">Carregar Estado</string>
+    
+    <!-- Interface do Jogo -->
+    <string name="start_game">Iniciar Jogo</string>
+
 </resources>

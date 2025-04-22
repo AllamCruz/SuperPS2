@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.superps2.emu"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -18,13 +18,16 @@ android {
 
         // Configurações do NDK
         ndk {
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
         }
 
         externalNativeBuild {
             cmake {
                 cppFlags += "-std=c++17"
-                arguments += "-DANDROID_STL=c++_shared"
+                arguments += listOf(
+                    "-DANDROID_STL=c++_shared",
+                    "-DANDROID_ARM_NEON=TRUE"
+                )
             }
         }
     }
@@ -54,6 +57,7 @@ android {
 
     // Configurações do NDK e CMake
     ndkVersion = "25.1.8937393"
+    
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")

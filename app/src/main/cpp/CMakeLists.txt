@@ -13,55 +13,68 @@ set(ANDROID_NDK ${ANDROID_NDK})
 set(ANDROID_ABI ${ANDROID_ABI})
 set(ANDROID_PLATFORM android-24)
 
-# Definições necessárias para tipos fixos e JNI
+# Definições necessárias para tipos fixos
 add_definitions(
     -D__STDC_LIMIT_MACROS
     -D__STDC_CONSTANT_MACROS
-    -DJNIEXPORT=__attribute__((visibility("default")))
+    -D__STDC_FORMAT_MACROS
 )
 
 # Configurar C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Flags de compilação
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions -frtti")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fvisibility=hidden")
+
 # Incluir diretórios
 include_directories(
-    ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/audio
+    ${CMAKE_CURRENT_SOURCE_DIR}/core
+    ${CMAKE_CURRENT_SOURCE_DIR}/emulation
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics
+    ${CMAKE_CURRENT_SOURCE_DIR}/input
+    ${CMAKE_CURRENT_SOURCE_DIR}/jni
+    ${CMAKE_CURRENT_SOURCE_DIR}/osd
+    ${CMAKE_CURRENT_SOURCE_DIR}/ps2engine
+    ${CMAKE_CURRENT_SOURCE_DIR}/renderer
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${ANDROID_NDK}/sources/android/native_app_glue
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
-    ${ANDROID_NDK}/sysroot/usr/include
     ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include
-    ${CMAKE_SOURCE_DIR}/audio
-    ${CMAKE_SOURCE_DIR}/core
-    ${CMAKE_SOURCE_DIR}/emulation
-    ${CMAKE_SOURCE_DIR}/graphics
-    ${CMAKE_SOURCE_DIR}/ps2engine
-    ${CMAKE_SOURCE_DIR}/utils
+    ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android
 )
 
-# Coletar arquivos fonte
-file(GLOB SOURCES 
-    "*.cpp" 
-    "*.c"
+# Coletar todos os arquivos .cpp recursivamente
+file(GLOB_RECURSE SOURCES 
+    "*.cpp"
     "audio/*.cpp"
     "core/*.cpp"
     "emulation/*.cpp"
     "graphics/*.cpp"
     "ps2engine/*.cpp"
     "utils/*.cpp"
+    "jni/*.cpp"
 )
 
 # Criar biblioteca compartilhada
 add_library(superps2 SHARED ${SOURCES})
 
-# Linkar com bibliotecas necessárias
+# Localiza as bibliotecas necessárias
+find_library(log-lib log)
+find_library(android-lib android)
+find_library(glesv3-lib GLESv3)
+find_library(egl-lib EGL)
+
+# Vincular bibliotecas
 target_link_libraries(superps2
-    android
-    log
-    EGL
-    GLESv2
+    ${log-lib}
+    ${android-lib}
+    ${glesv3-lib}
+    ${egl-lib}
 )
 
 # Opções de compilação
@@ -71,4 +84,13 @@ target_compile_options(superps2 PRIVATE
     -fexceptions
     -frtti
     -fPIC
+)
+
+set_target_properties(superps2 PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CXX_EXTENSIONS OFF
+    POSITION_INDEPENDENT_CODE ON
+    VISIBILITY_INLINES_HIDDEN ON
+    CXX_VISIBILITY_PRESET hidden
 )
