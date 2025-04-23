@@ -5,24 +5,21 @@ plugins {
 
 android {
     namespace = "com.superps2.emu"
-    compileSdk = 34
+    compileSdk = 31
 
     defaultConfig {
         applicationId = "com.superps2.emu"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = 21
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
         externalNativeBuild {
             cmake {
                 cppFlags("-std=c++17")
                 arguments("-DANDROID_STL=c++_shared")
             }
         }
-        
         ndk {
             abiFilters += listOf("arm64-v8a")
         }
@@ -37,23 +34,23 @@ android {
             )
         }
     }
-    
+
     externalNativeBuild {
         cmake {
-            path("src/main/cpp/CMakeLists.txt")
+            path("CMakeLists.txt")
             version = "3.22.1"
         }
     }
-    
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    
+
     kotlinOptions {
         jvmTarget = "17"
     }
-    
+
     buildFeatures {
         viewBinding = true
     }

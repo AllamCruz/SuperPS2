@@ -61,4 +61,9 @@
     <color name="ps2TextSecondary">#B3FFFFFF</color>
     <color name="ps2Accent">#00B4FF</color>
     <color name="black_blue_header">#0A0A1F</color>
+
+    <color name="ps2Background">#000000</color>
+    <color name="ps2_dark_background">#111122</color>
+    <color name="ps2_dark_bg">#0A0A1A</color>
+
 </resources>

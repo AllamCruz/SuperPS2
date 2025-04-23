@@ -60,4 +60,24 @@
         <item name="android:background">@drawable/dpad_button_background</item>
         <item name="android:padding">8dp</item>
     </style>
+
+    <style name="SectionTitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ps2_blue</item>
+    </style>
+    <style name="DividerLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/ps2_dark_bg</item>
+    </style>
+    <style name="SettingsSectionTitle">@style/SectionTitle</style>
+    <style name="SettingsSpinner">
+        <item name="android:dropDownSelector">@color/ps2_dark_background</item>
+    </style>
+    <style name="SettingsSwitch">
+        <item name="android:thumbTint">@color/ps2_blue</item>
+        <item name="android:trackTint">@color/ps2_dark_background</item>
+    </style>
+
 </resources>
