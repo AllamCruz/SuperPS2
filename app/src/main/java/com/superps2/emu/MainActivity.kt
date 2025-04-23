@@ -5,6 +5,12 @@ import com.superps2.emu.graphics.GLGameView
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        init {
+            System.loadLibrary("superps2")
+        }
+    }
+
     private lateinit var glGameView: GLGameView
 
     override fun onCreate(savedInstanceState: Bundle?) {

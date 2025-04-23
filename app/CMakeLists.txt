@@ -19,20 +19,24 @@ set(ANDROID_NDK ${ANDROID_NDK})
 set(ANDROID_ABI ${ANDROID_ABI})
 set(ANDROID_PLATFORM android-26)
 
+# Adicionar biblioteca android_native_app_glue
+add_library(android_native_app_glue STATIC
+    ${ANDROID_NDK}/sources/android/native_app_glue/android_native_app_glue.c)
+
 # Incluir diretórios
 include_directories(
-    ${CMAKE_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${ANDROID_NDK}/sources/android/native_app_glue
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
     ${ANDROID_NDK}/sysroot/usr/include
-    ${CMAKE_SOURCE_DIR}/audio
-    ${CMAKE_SOURCE_DIR}/core
-    ${CMAKE_SOURCE_DIR}/emulation
-    ${CMAKE_SOURCE_DIR}/graphics
-    ${CMAKE_SOURCE_DIR}/ps2engine
-    ${CMAKE_SOURCE_DIR}/utils
+    ${CMAKE_CURRENT_SOURCE_DIR}/audio
+    ${CMAKE_CURRENT_SOURCE_DIR}/core
+    ${CMAKE_CURRENT_SOURCE_DIR}/emulation
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics
+    ${CMAKE_CURRENT_SOURCE_DIR}/ps2engine
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
 )
 
 # Coletar arquivos fonte
@@ -68,6 +72,7 @@ target_link_libraries(superps2
     ${glesv2-lib}
     ${oboe-lib}
     ZLIB::ZLIB
+    android_native_app_glue
 )
 
 # Opções de compilação
@@ -123,5 +128,5 @@ target_sources(superps2 PRIVATE
 )
 
 # Incluir diretórios adicionais
-include_directories(src/main/cpp/ps2engine)
-include_directories(src/main/cpp/emulation/bios)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/ps2engine)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/emulation/bios)
