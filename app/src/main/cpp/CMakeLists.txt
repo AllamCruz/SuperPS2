@@ -82,14 +82,25 @@ set_target_properties(superps2 PROPERTIES
 
 target_include_directories(superps2 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/common
+    ${CMAKE_CURRENT_SOURCE_DIR}/cpu
+    ${CMAKE_CURRENT_SOURCE_DIR}/spu2
+    ${CMAKE_CURRENT_SOURCE_DIR}/gpu
+    ${CMAKE_CURRENT_SOURCE_DIR}/jni
+    ${CMAKE_CURRENT_SOURCE_DIR}/ps2engine
+    ${CMAKE_CURRENT_SOURCE_DIR}/osd
+    ${CMAKE_CURRENT_SOURCE_DIR}/emulation
+    ${CMAKE_CURRENT_SOURCE_DIR}/audio
+    ${CMAKE_CURRENT_SOURCE_DIR}/core
+    ${CMAKE_CURRENT_SOURCE_DIR}/graphics
+    # NDK Includes
     ${ANDROID_NDK}/sources/android/native_app_glue
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
     ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include
     ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/lib64/clang/14.0.7/include
-    ${ANDROID_NDK}/sources/android/native_app_glue/include
-    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
-    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
-    ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include
-    ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/lib64/clang/14.0.7/include
+    # Android Platform Includes
+    ${ANDROID_NDK}/platforms/${ANDROID_PLATFORM}/arch-${ANDROID_ARCH_ABI}/usr/include
+    # OpenGL ES Includes
+    ${ANDROID_NDK}/platforms/${ANDROID_PLATFORM}/arch-${ANDROID_ARCH_ABI}/usr/include/GLES3
 )

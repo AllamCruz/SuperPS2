@@ -10,26 +10,26 @@
 #include <jni.h>
 #include <string>
 #include <exception>
+#include <android/log.h>
+#include <android/native_window.h>
+#include <android/native_window_jni.h>
+#include <GLES3/gl3.h>
 #include "ps2engine/ps2engine.h"
 #include "osd/osd.h"
 #include "emulation/options/engine_options.h"
 #include "emulation/input/input_manager.h"
-#include <android/log.h>
 #include "core/ps2_core.h"
-#include <android/native_window.h>
-#include <android/native_window_jni.h>
 #include "graphics/ps2renderer.h"
+#include "graphics/gl_renderer.h"
 #include <thread>
 
 // Define macros para logging no Android
 #define LOG_TAG "SuperPS2-CPP"
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
-
-#undef LOGI
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+#define LOGI_NATIVE(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 
 #define TAG "NativeEntry"
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
+#define LOGI_NATIVE(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 
 /*
  * Função auxiliar para inicializar os módulos de CPU, GPU, áudio e I/O.
@@ -99,17 +99,9 @@ void releaseEmulatorResources() {
     LOGI("Liberando recursos do emulador...");
 }
 
-/*
- * A função nativa initEmulator, chamada a partir da MainActivity via JNI,
- * serve para inicializar o núcleo do emulador. A função retorna JNI_TRUE se 
- * a inicialização for bem-sucedida, caso contrário, retorna JNI_FALSE.
- *
- * Observação:
- * - A convenção de nomenclatura segue o padrão JNI: Java_<package>_<Class>_<method>.
- * - Caso o pacote utilizado na MainActivity seja diferente, ajuste o nome da função
- *   de acordo com o nome completo da Activity.
- */
-extern "C" JNIEXPORT jboolean JNICALL
+extern "C" {
+
+JNIEXPORT jboolean JNICALL
 Java_com_superps2_emu_MainActivity_initEmulator(JNIEnv* env, jobject instance) {
     LOGI("Chamando initEmulator via JNI...");
 
@@ -128,31 +120,6 @@ Java_com_superps2_emu_MainActivity_initEmulator(JNIEnv* env, jobject instance) {
     return initialized ? JNI_TRUE : JNI_FALSE;
 }
 
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_superps2_emu_core_NativeBridge_startEmulation(JNIEnv *env, jobject, jstring isoPath) {
-    const char *path = env->GetStringUTFChars(isoPath, 0);
-
-    __android_log_print(ANDROID_LOG_INFO, "SuperPS2", "Iniciando emulação: %s", path);
-
-    // Em um prompt futuro: chamar a engine real aqui
-    // bool success = ps2core_start(path);
-
-    env->ReleaseStringUTFChars(isoPath, path);
-
-    return JNI_TRUE; // Temporariamente sempre retorna sucesso
-}
-
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_superps2_emu_core_NativeBridge_startEmulation(JNIEnv *env, jobject, jstring isoPath) {
-    const char *path = env->GetStringUTFChars(isoPath, 0);
-    std::string isoPathStr(path);
-    env->ReleaseStringUTFChars(isoPath, path);
-
-    bool success = ps2engine::start(isoPathStr);
-    return static_cast<jboolean>(success);
-}
-
-extern "C"
 JNIEXPORT jboolean JNICALL
 Java_com_superps2_emu_core_NativeBridge_startEmulation(JNIEnv *env, jobject, jstring isoPath) {
     const char *path = env->GetStringUTFChars(isoPath, 0);
@@ -161,7 +128,6 @@ Java_com_superps2_emu_core_NativeBridge_startEmulation(JNIEnv *env, jobject, jst
     return static_cast<jboolean>(ps2engine::start(isoPathStr));
 }
 
-extern "C"
 JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_NativeBridge_setSurface(JNIEnv *env, jobject, jobject surface) {
     ANativeWindow* window = ANativeWindow_fromSurface(env, surface);
@@ -173,142 +139,112 @@ Java_com_superps2_emu_core_NativeBridge_setSurface(JNIEnv *env, jobject, jobject
     }
 }
 
-/*
- * Outras funções nativas podem ser declaradas e implementadas a seguir,
- * tais como funções para atualizar configurações de desempenho, alterar gráficos
- * em tempo real ou liberar recursos ao finalizar a Activity.
- *
- * Por exemplo:
- *
- * extern "C" JNIEXPORT void JNICALL
- * Java_com_superps2_emu_MainActivity_releaseEmulator(JNIEnv* env, jobject instance) {
- *     releaseEmulatorResources();
- * }
- *
- * Essas funções devem seguir a mesma convenção e poderão ser invocadas conforme necessário.
- */
-
-#include "audio/spu2.h"
-
-extern "C" JNIEXPORT jboolean JNICALL
+JNIEXPORT jboolean JNICALL
 Java_com_superps2_emu_core_NativeAudio_initAudio(JNIEnv*, jobject, jint sr, jint ch, jint bs) {
     return spu2::init(sr, ch, bs);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_NativeAudio_writeAudio(JNIEnv* env, jobject, jshortArray data, jint num) {
     jshort* pcm = env->GetShortArrayElements(data, nullptr);
     spu2::writeSamples(reinterpret_cast<uint16_t*>(pcm), num);
     env->ReleaseShortArrayElements(data, pcm, 0);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_NativeAudio_shutdownAudio(JNIEnv*, jobject) {
     spu2::shutdown();
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_OSDBridge_initOSD(JNIEnv*, jobject, jdouble targetFps) {
     osd::init(targetFps);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_OSDBridge_notifyFrame(JNIEnv*, jobject) {
     osd::notifyFrameRendered();
 }
 
-extern "C" JNIEXPORT jdouble JNICALL
+JNIEXPORT jdouble JNICALL
 Java_com_superps2_emu_core_OSDBridge_getFps(JNIEnv*, jobject) {
     return osd::getFps();
 }
 
-extern "C" JNIEXPORT jdouble JNICALL
+JNIEXPORT jdouble JNICALL
 Java_com_superps2_emu_core_OSDBridge_getSpeed(JNIEnv*, jobject) {
     return osd::getEmulationSpeed();
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_OSDBridge_shutdownOSD(JNIEnv*, jobject) {
     osd::shutdown();
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_EngineSettingsBridge_setResolutionScale(JNIEnv*, jobject, jfloat scale) {
     options::setResolutionScale(scale);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_EngineSettingsBridge_setFrameLimit(JNIEnv*, jobject, jint fps) {
     options::setFrameLimit(fps);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_EngineSettingsBridge_setVSyncEnabled(JNIEnv*, jobject, jboolean en) {
     options::setVSyncEnabled(en);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_EngineSettingsBridge_setMultiThreadEnabled(JNIEnv*, jobject, jboolean en) {
     options::setMultiThreadEnabled(en);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_core_EngineSettingsBridge_setNeonOptimizations(JNIEnv*, jobject, jboolean en) {
     options::setNeonOptimizations(en);
 }
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_superps2_emu_MainActivity_stringFromJNI(
-        JNIEnv* env,
-        jobject /* this */) {
+JNIEXPORT jstring JNICALL
+Java_com_superps2_emu_MainActivity_stringFromJNI(JNIEnv* env, jobject /* this */) {
     std::string hello = "SuperPS2 Native Initialized!";
     return env->NewStringUTF(hello.c_str());
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_jni_PS2Bridge_sendButtonEvent(JNIEnv*, jobject, jint code, jboolean pressed) {
     input::setButtonState(code, pressed == JNI_TRUE);
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_jni_NativeInput_onAxisEvent(JNIEnv*, jobject, jint axis, jfloat value) {
     input::setAxisValue(axis, value);
 }
 
-#include "graphics/gl_renderer.h"
-#include "emulation/gs/renderer/vertex_buffer.h"
-
-// Funções de renderização
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeInit(JNIEnv* env, jobject thiz) {
     LOGI("Inicializando renderizador OpenGL...");
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeRender(JNIEnv* env, jobject thiz) {
     // Renderização do frame atual
     ps2renderer::renderFrame();
 }
 
-extern "C" JNIEXPORT void JNICALL
+JNIEXPORT void JNICALL
 Java_com_superps2_emu_graphics_GLRenderer_nativeShutdown(JNIEnv* env, jobject thiz) {
     LOGI("Finalizando renderizador OpenGL...");
     ps2renderer::shutdown();
 }
-
-extern "C" {
 
 JNIEXPORT jboolean JNICALL
 Java_com_superps2_emu_EmulatorBridge_startEmulation(JNIEnv *env, jobject /* this */, jstring isoPath) {
     const char *nativePath = env->GetStringUTFChars(isoPath, nullptr);
     std::string pathStr(nativePath);
     env->ReleaseStringUTFChars(isoPath, nativePath);
-
-    bool success = ps2::initializeCore(pathStr);
-    if (success) {
-        ps2::launchEmulationThread();
-    }
-    return success ? JNI_TRUE : JNI_FALSE;
+    return static_cast<jboolean>(ps2engine::start(pathStr));
 }
 
 JNIEXPORT jboolean JNICALL

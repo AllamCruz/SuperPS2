@@ -15,22 +15,16 @@ add_definitions(-D__STDC_CONSTANT_MACROS)
 add_definitions(-DJNIEXPORT=__attribute__\(\(visibility\(\"default\"\)\)\))
 
 # Configuração do Android
-set(ANDROID_NDK ${ANDROID_NDK})
 set(ANDROID_ABI ${ANDROID_ABI})
 set(ANDROID_PLATFORM android-26)
 
 # Adicionar biblioteca android_native_app_glue
 add_library(android_native_app_glue STATIC
-    ${ANDROID_NDK}/sources/android/native_app_glue/android_native_app_glue.c)
 
 # Incluir diretórios
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${ANDROID_NDK}/sources/android/native_app_glue
-    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
-    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
-    ${ANDROID_NDK}/sysroot/usr/include
     ${CMAKE_CURRENT_SOURCE_DIR}/audio
     ${CMAKE_CURRENT_SOURCE_DIR}/core
     ${CMAKE_CURRENT_SOURCE_DIR}/emulation
@@ -60,9 +54,9 @@ find_library(android-lib android)
 find_library(egl-lib EGL)
 find_library(glesv2-lib GLESv2)
 find_library(oboe-lib oboe)
+find_library(ZLIB_LIB z)
 
 # Adiciona zlib para cálculo de CRC32
-find_package(ZLIB REQUIRED)
 
 # Vincular bibliotecas
 target_link_libraries(superps2
@@ -71,7 +65,7 @@ target_link_libraries(superps2
     ${egl-lib}
     ${glesv2-lib}
     ${oboe-lib}
-    ZLIB::ZLIB
+    ${ZLIB_LIB}
     android_native_app_glue
 )
 
@@ -90,7 +84,6 @@ target_sources(superps2 PRIVATE
     src/main/cpp/emulation/ps2core.cpp
     src/main/cpp/emulation/bios/bios.cpp
     src/main/cpp/emulation/memory/memory.cpp
-    src/main/cpp/emulation/cpu/ee_core.cpp
     src/main/cpp/emulation/dma/dma.cpp
     src/main/cpp/emulation/vif/vif.cpp
     src/main/cpp/emulation/gif/gif.cpp
