@@ -1,12 +1,9 @@
-#ifndef SUPERPS2_INTERPRETER_H
-#define SUPERPS2_INTERPRETER_H
+#pragma once
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace ee {
     namespace cpu {
         void execInstruction(uint32_t instructionWord);
     }
 }
-
-#endif // SUPERPS2_INTERPRETER_H 

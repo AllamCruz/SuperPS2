@@ -1,7 +1,6 @@
-#ifndef SUPERPS2_EE_CORE_H
-#define SUPERPS2_EE_CORE_H
+#pragma once
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace ee {
     namespace cpu {
@@ -12,6 +11,4 @@ namespace ee {
         void step();  // Executa uma única instrução
         void run();   // Loop principal (modo interpretado)
     }
-}
-
-#endif // SUPERPS2_EE_CORE_H 
+} 

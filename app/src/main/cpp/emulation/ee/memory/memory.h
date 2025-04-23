@@ -1,7 +1,6 @@
-#ifndef SUPERPS2_MEMORY_H
-#define SUPERPS2_MEMORY_H
+#pragma once
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace ee {
     namespace memory {
@@ -14,6 +13,4 @@ namespace ee {
 
         uint8_t* getPointer(uint32_t addr);
     }
-}
-
-#endif // SUPERPS2_MEMORY_H 
+} 

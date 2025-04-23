@@ -107,4 +107,16 @@
     <!-- Interface do Jogo -->
     <string name="start_game">Iniciar Jogo</string>
 
+    <string name="ps2_logo">PlayStation 2</string>
+    <string name="menu_games">Jogos</string>
+    <string name="menu_about">Sobre</string>
+    <string name="fps_counter">FPS: %1$d</string>
+    <string name="speed_counter">Velocidade: %1$d%%</string>
+    <string name="button_play">Jogar</string>
+    <string name="button_pause">Pausar</string>
+    <string name="button_stop">Parar</string>
+    <string name="button_reset">Resetar</string>
+    <string name="button_save">Salvar Estado</string>
+    <string name="button_load">Carregar Estado</string>
+
 </resources>

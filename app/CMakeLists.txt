@@ -5,19 +5,19 @@ cmake_minimum_required(VERSION 3.22.1)
 # Define o nome do projeto
 project(superps2)
 
-# Configurações do Android
-set(ANDROID_NDK ${ANDROID_NDK})
-set(ANDROID_ABI ${ANDROID_ABI})
-set(ANDROID_PLATFORM android-24)
+# Configurar C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Definições necessárias
 add_definitions(-D__STDC_LIMIT_MACROS)
 add_definitions(-D__STDC_CONSTANT_MACROS)
 add_definitions(-DJNIEXPORT=__attribute__\(\(visibility\(\"default\"\)\)\))
 
-# Configurar C++17
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Configuração do Android
+set(ANDROID_NDK ${ANDROID_NDK})
+set(ANDROID_ABI ${ANDROID_ABI})
+set(ANDROID_PLATFORM android-26)
 
 # Incluir diretórios
 include_directories(
@@ -38,6 +38,7 @@ include_directories(
 # Coletar arquivos fonte
 file(GLOB SOURCES 
     "*.cpp"
+    "*.c"
     "audio/*.cpp"
     "core/*.cpp"
     "emulation/*.cpp"

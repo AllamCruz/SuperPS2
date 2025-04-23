@@ -1,7 +1,6 @@
-#ifndef SUPERPS2_RAM_H
-#define SUPERPS2_RAM_H
+#pragma once
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace ee {
     namespace memory {
@@ -51,6 +50,4 @@ namespace ee {
         void invalidateDCache();
         void writebackDCache();
     }
-}
-
-#endif // SUPERPS2_RAM_H 
+} 
