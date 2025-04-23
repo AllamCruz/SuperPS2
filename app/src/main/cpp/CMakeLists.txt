@@ -45,7 +45,7 @@ find_library(egl-lib EGL)
 find_library(glesv2-lib GLESv2)
 
 # Adiciona zlib para cálculo de CRC32
-find_package(ZLIB REQUIRED)
+find_library(ZLIB_LIB z)
 
 # Vincular bibliotecas
 target_link_libraries(superps2
@@ -53,7 +53,7 @@ target_link_libraries(superps2
     ${android-lib}
     ${egl-lib}
     ${glesv2-lib}
-    ZLIB::ZLIB
+    ${ZLIB_LIB}
     android_native_app_glue
     common
     cpu
@@ -82,6 +82,12 @@ set_target_properties(superps2 PROPERTIES
 
 target_include_directories(superps2 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${ANDROID_NDK}/sources/android/native_app_glue
+    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
+    ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
+    ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include
+    ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/lib64/clang/14.0.7/include
+    ${ANDROID_NDK}/sources/android/native_app_glue/include
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++/include
     ${ANDROID_NDK}/sources/cxx-stl/llvm-libc++abi/include
     ${ANDROID_NDK}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include

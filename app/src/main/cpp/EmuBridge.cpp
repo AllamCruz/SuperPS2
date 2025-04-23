@@ -6,14 +6,21 @@
 #include <cwchar>
 #include <jni.h>
 #include <string>
+
+// Incluir headers do Android NDK
 #include <android/log.h>
+#include <jni.h>
+
+// Definições necessárias para JNI
+#define JNIEXPORT __attribute__((visibility("default")))
+#define JNICALL
+
 #include "ps2engine/ps2engine.h"
 #include "osd/osd.h"
 #include "emulation/options/engine_options.h"
 #include "emulation/input/input_manager.h"
 #include "audio/spu2.h"
 #include "core/ps2_core.h"
-#include "common.h"
 
 #define LOG_TAG "SuperPS2-CPP"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)

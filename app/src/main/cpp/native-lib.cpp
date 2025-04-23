@@ -19,11 +19,14 @@
 #include <android/native_window.h>
 #include <android/native_window_jni.h>
 #include "graphics/ps2renderer.h"
+#include <thread>
 
 // Define macros para logging no Android
 #define LOG_TAG "SuperPS2-CPP"
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+
+#undef LOGI
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 
 #define TAG "NativeEntry"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)

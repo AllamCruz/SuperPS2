@@ -110,9 +110,6 @@ target_sources(superps2 PRIVATE
     src/main/cpp/emulation/ee/memory/mem_mainram.cpp
     src/main/cpp/emulation/ee/memory/memory.cpp
     src/main/cpp/emulation/ee/cop0/cop0.cpp
-    src/main/cpp/emulation/ee/cpu/ee_core.cpp
-    src/main/cpp/emulation/ee/vu/vu0.cpp
-    src/main/cpp/emulation/ee/vu/vu1.cpp
     src/main/cpp/emulation/ee/cpu/gpr.cpp
     src/main/cpp/emulation/ee/cpu/pc.cpp
     src/main/cpp/emulation/ee/cpu/decoder.cpp
